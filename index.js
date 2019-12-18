@@ -1,9 +1,7 @@
-dom.window.gameLoaded = () => {
-  let port = process.env.PORT;
-  if (port == null || port == "") {
-    port = 8082;
-  }
-  server.listen(port, function () {
-    console.log(`Listening on ${server.address().port}`);
-  });
-};
+const express = require('express');
+const serveStatic = require("serve-static");
+const path = require('path');
+const app = express();
+app.use(serveStatic(path.join(__dirname, 'dist')));
+const port = process.env.PORT || 80;
+app.listen(port);
